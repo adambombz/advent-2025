@@ -21,12 +21,10 @@ def checkItem(numstr):
             break
         check2 = False
         item = numstr[:i]
-        # print("start", "division", i, "looking for a repeat",item, "full num", numstr)
         #start count at 1 to account for the existing instance of the repeated sequence
         count=1
         #for loop to start looking at the next numbers after said division, then jumping by said division
         for j in range(i, len(numstr),i):
-            # print('check','division',i,'pos',j,'analyzing',numstr[j:j+i])
             #if it fails it breaks out
             if item != numstr[j:j+i]:
                 # print('discredited')
@@ -34,19 +32,16 @@ def checkItem(numstr):
                 break
             #adds a count for totalling if the sequence repeats and checks if the entire number has been made up
             else:
-                # print()
                 count+=1
-                # print(i, numstr, numstr[j:j+i], count*numstr[j:j+i])
+                #didn't know you could multiply strings to have them repeat
                 if count*numstr[j:j+i]==numstr:
                     check2=True
-                    check=True
                     break
         #scoring using count to reconstruct the original invalid ID
         if check:
             out=""
             for _ in range(count):
                 out+=item
-            # print("\nadded",out)
             total+=int(out)
     return total
 
@@ -59,5 +54,6 @@ for i in items:
         if numstr[:int(len(numstr) / 2)] == numstr[int(len(numstr)/ 2):]:
             pt1+=int(numstr[:int(len(numstr) / 2)]+numstr[:int(len(numstr) / 2)])
         pt2+=checkItem(numstr)
+
 
 print(pt1, pt2)

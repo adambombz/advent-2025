@@ -37,5 +37,5 @@ for i in f:
     if pos==0:
         pt1+=1
 
-
+#pt1 is number of times ended on 0. pt2 is also that and the number of times zero is passed
 print(pt1,pt1+pt2)

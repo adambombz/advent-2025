@@ -9,35 +9,26 @@ items=[]
 for i in f:
     items.append(i.split('-'))
 
-#pt2 function horribly designed
+#pt2
 def checkItem(numstr):
     total=0
-    check=True
-    check2=False
-    #first loop is for divisions of how long a number could be (ex. 123456 could be devised by 1, 2, 3 for this problem)
+    check=False
+    #first loop is for divisions of how long a number could be (ex. 123456 could be devised by 1, 2, 3 digits for this problem)
     for i in range(1,len(numstr)):
-        #check2 is to break out if the comparison string repeated adds to the entire number (ex. '67' repeated 3 times matches the whole number of '676767')
-        if check2:
+        #check is to break out if the comparison string repeated adds to the entire number (ex. 67 3 times is 676767)
+        if check:
             break
-        check2 = False
         item = numstr[:i]
-        #start count at 1 to account for the existing instance of the repeated sequence
         count=1
-        #for loop to start looking at the next numbers after said division, then jumping by said division
         for j in range(i, len(numstr),i):
-            #if it fails it breaks out
             if item != numstr[j:j+i]:
-                # print('discredited')
-                check=False
                 break
-            #adds a count for totalling if the sequence repeats and checks if the entire number has been made up
             else:
                 count+=1
-                #didn't know you could multiply strings to have them repeat
                 if count*numstr[j:j+i]==numstr:
-                    check2=True
+                    check=True
                     break
-        #scoring using count to reconstruct the original invalid ID
+        #score with string concat
         if check:
             out=""
             for _ in range(count):
@@ -54,6 +45,5 @@ for i in items:
         if numstr[:int(len(numstr) / 2)] == numstr[int(len(numstr)/ 2):]:
             pt1+=int(numstr[:int(len(numstr) / 2)]+numstr[:int(len(numstr) / 2)])
         pt2+=checkItem(numstr)
-
 
 print(pt1, pt2)

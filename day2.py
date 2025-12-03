@@ -28,12 +28,8 @@ def checkItem(numstr):
                 if count*numstr[j:j+i]==numstr:
                     check=True
                     break
-        #score with string concat
         if check:
-            out=""
-            for _ in range(count):
-                out+=item
-            total+=int(out)
+            total+=int(numstr)
     return total
 
 #iterate through ranges, then through all the numbers in said range. pt1 solution is included as it's only needed to compare the front and back of the number. pt2 uses the function
@@ -47,3 +43,4 @@ for i in items:
         pt2+=checkItem(numstr)
 
 print(pt1, pt2)
+
